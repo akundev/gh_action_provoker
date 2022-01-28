@@ -16,4 +16,4 @@ jobs:
             -u "${{ secrets.PAT_USERNAME}}:${{ secrets.PAT_TOKEN }}" \
             -H "Accept: application/vnd.github.everest-preview+json" \
             -H "Content-Type: application/json" https://api.github.com/repos/akundev/gh_actions_receiver/actions/workflows/benchmark.yaml/dispatches \
-            -d '{"ref": "main", "inputs": {"tag_number": "$GITHUB_REF"} }'
+            -d '{"ref": "main", "inputs": {"tag_number": "${GITHUB_REF/refs\/tags\//}"} }'
