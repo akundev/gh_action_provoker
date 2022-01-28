@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Run Benchmark
         run: |
-          echo "Run Benchmark"
-          echo ${ GITHUB_REF }
           curl \
             -X POST \
             -u "${{ secrets.PAT_USERNAME}}:${{ secrets.PAT_TOKEN }}" \
