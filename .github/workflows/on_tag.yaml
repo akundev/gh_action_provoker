@@ -11,7 +11,7 @@ jobs:
       - name: Run Benchmark
         run: |
           echo "Run Benchmark"
-          echo ${{ github.event.base_ref }}
+          echo ${ github.event.base_ref }
           echo ${ GITHUB_REF }
           curl \
             -X POST \
