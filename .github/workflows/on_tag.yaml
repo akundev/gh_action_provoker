@@ -7,19 +7,20 @@ on:
       - "**"
 
 jobs:
-  dispatch:
+  build:
+    name: Tag is pushed
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.PAT_TOKEN }}
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: 'akundev',
-              repo: 'gh_actions_receiver',
-              workflow_id: 'benchmark.yaml',
-              ref: 'main',
-              inputs: {
-                tags: '${GITHUB_REF#refs/heads/}'
-              },
-            })
+      - name: Extract branch name
+        shell: bash
+        id: extract_branch
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+
+      - name: Run Benchmark
+        run: |
+          curl \
+            -X POST \
+            -u "${{ secrets.PAT_USERNAME}}:${{ secrets.PAT_TOKEN }}" \
+            -H "Accept: application/vnd.github.everest-preview+json" \
+            -H "Content-Type: application/json" https://api.github.com/repos/akundev/gh_actions_receiver/actions/workflows/benchmark.yaml/dispatches \
+            -d '{"ref": "main", "inputs": {"tag_number": "${{ steps.extract_branch.outputs.branch }}"} }'
