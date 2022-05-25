@@ -1,3 +1,5 @@
+name: This to invoke another repo's CI
+
 on:
   push:
     branches:
