@@ -27,7 +27,7 @@ jobs:
                 workflow_id: 'benchmark.yaml',
                 ref: 'main',
                 inputs: {
-                  tag_number: ${{ steps.extract_branch.outputs.branch }}
+                  tag_number: '${{ steps.extract_branch.outputs.branch }}'
                 },
               })
                 console.log(result);
