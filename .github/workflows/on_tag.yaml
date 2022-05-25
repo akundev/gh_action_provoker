@@ -1,7 +1,10 @@
 on:
   push:
     branches:
-      - 'main'
+      - "main"
+  create:
+    tags:
+      - "**"
 
 jobs:
   build:
@@ -12,7 +15,7 @@ jobs:
         shell: bash
         id: extract_branch
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        
+
       - name: Run Benchmark
         run: |
           curl \
