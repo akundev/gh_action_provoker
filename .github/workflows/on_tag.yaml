@@ -18,5 +18,8 @@ jobs:
               owner: 'akundev',
               repo: 'gh_actions_receiver',
               workflow_id: 'benchmark.yaml',
-              ref: '${GITHUB_REF#refs/heads/}',
+              ref: 'main',
+              inputs: {
+                tags: ${GITHUB_REF#refs/heads/}
+              },
             })
