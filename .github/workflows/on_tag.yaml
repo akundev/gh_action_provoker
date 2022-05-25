@@ -20,8 +20,7 @@ jobs:
         with:
           github-token: ${{ secrets.PAT_TOKEN }}
           script: |
-            try {
-              const result = await github.rest.actions.createWorkflowDispatch({
+            await github.rest.actions.createWorkflowDispatch({
                 owner: 'akundev',
                 repo: 'gh_actions_receiver',
                 workflow_id: 'benchmark.yaml',
@@ -30,8 +29,3 @@ jobs:
                   tag_number: '${{ steps.extract_branch.outputs.branch }}'
                 },
               })
-                console.log(result);
-              } catch(error) {
-                console.error(error);
-                core.setFailed(error);
-              }
