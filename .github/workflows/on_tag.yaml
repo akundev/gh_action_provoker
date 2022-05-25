@@ -22,5 +22,5 @@ jobs:
               owner: 'akundev',
               repo: 'gh_actions_receiver',
               workflow_id: 'benchmark.yaml',
-              tag_number: ${{ steps.extract_branch.outputs.branch }},
+              tag_number: ${{ steps.extract_branch.outputs.branch }}
             })
