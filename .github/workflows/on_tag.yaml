@@ -20,6 +20,6 @@ jobs:
               workflow_id: 'benchmark.yaml',
               ref: 'main',
               inputs: {
-                tags: ${{ GITHUB_REF#refs/heads/ }}
+                tags: '${{ GITHUB_REF#refs/heads/ }}'
               },
             })
