@@ -10,12 +10,6 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-      
-      - name: Extract branch name
-        shell: bash
-        id: extract_branch
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-
       - uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.PAT_TOKEN }}
@@ -24,5 +18,5 @@ jobs:
               owner: 'akundev',
               repo: 'gh_actions_receiver',
               workflow_id: 'benchmark.yaml',
-              tag_number: '${{ steps.extract_branch.outputs.branch }}',
+              ref: '${{ GITHUB_REF#refs/heads/ }}',
             })
